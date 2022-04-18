@@ -607,9 +607,8 @@ stop
 ![05-33](Captures/05-33.png)
 
 ### 화살표
-
-Using the `->` notation, you can add texts to arrow, and change their [color](https://plantuml.com/ko/color).
-It's also possible to have dotted, dashed, bold or hidden arrows.
+`->` 화살표 표현식에 [color](https://plantuml.com/ko/color) 색상 정의를 할 수 있습니다.
+각 화살표에 대한 점, 대시, 굵게 등 뿐만 아니라 숨기는 등도 가능합니다.
 
 ```java
 @startuml
@@ -630,28 +629,10 @@ endif
 :foo5;
 @enduml
 ```
-```plantuml
-@startuml
-:foo1;
--> You can put text on arrows;
-if (test) then
-  -[#blue]->
-  :foo2;
-  -[#green,dashed]-> The text can
-  also be on several lines
-  and **very** long...;
-  :foo3;
-else
-  -[#black,dotted]->
-  :foo4;
-endif
--[#gray,bold]->
-:foo5;
-@enduml
-```
+![05-34](Captures/05-34.png)
 
-### Connector
-You can use parentheses to denote connector.
+### 커넥터
+커넥터를 나타내기 위하여 괄호를 이용하면 됩니다.
 
 ```java
 @startuml
@@ -663,19 +644,10 @@ detach
 :Other activity;
 @enduml
 ```
-```plantuml
-@startuml
-start
-:Some activity;
-(A)
-detach
-(A)
-:Other activity;
-@enduml
-```
+![05-35](Captures/05-35.png)
 
-### Color on connector
-You can add [color](https://plantuml.com/ko/color) on connector.
+### 커넥터 색상
+커넥터에도 색상, [color](https://plantuml.com/ko/color)을 넣을 수 있습니다.
 
 ```java
 @startuml
@@ -690,25 +662,13 @@ be better off green;
 stop
 @enduml
 ```
-```plantuml
-@startuml
-start
-:The connector below
-wishes he was blue;
-#blue:(B)
-:This next connector
-feels that she would
-be better off green;
-#green:(G)
-stop
-@enduml
-```
+![05-36](Captures/05-36.png)
 
-### Grouping or partition
+### 그룹 또는 파티션
 
-#### Group
+#### 그룹
 
-You can group activity together by defining group:
+액션 객체를 그룹으로 묶을 수 있습니다:
 
 ```java
 @startuml
@@ -725,24 +685,10 @@ end group
 stop
 @enduml
 ```
-```plantuml
-@startuml
-start
-group Initialization 
-    :read config file;
-    :init internal variable;
-end group
-group Running group
-    :wait for user interaction;
-    :print information;
-end group
+![05-37](Captures/05-37.png)
 
-stop
-@enduml
-```
-
-#### Partition
-You can group activity together by defining partition:
+#### 파티션
+그룹과 유사하게 파티션으로도 그룹 지을 수 있습니다:
 
 ```java
 @startuml
@@ -759,23 +705,9 @@ partition Running {
 stop
 @enduml
 ```
-```plantuml
-@startuml
-start
-partition Initialization {
-    :read config file;
-    :init internal variable;
-}
-partition Running {
-    :wait for user interaction;
-    :print information;
-}
+![05-38](Captures/05-38.png)
 
-stop
-@enduml
-```
-
-It's also possible to change partition [color](https://plantuml.com/ko/color):
+파티션 색상 [color](https://plantuml.com/ko/color) 변경도 가능합니다:
 
 ```java
 @startuml
@@ -791,22 +723,9 @@ partition Running {
 stop
 @enduml
 ```
-```plantuml
-@startuml
-start
-partition #lightGreen "Input Interface" {
-    :read config file;
-    :init internal variable;
-}
-partition Running {
-    :wait for user interaction;
-    :print information;
-}
-stop
-@enduml
-```
+![05-39](Captures/05-39.png)
 
-It's also possible to add [link](https://plantuml.com/ko/link) to partition:
+파티션에 [link](https://plantuml.com/ko/link) 링크를 추가하는 것도 가능합니다:
 ```java
 @startuml
 start
@@ -817,20 +736,11 @@ partition "[[http://plantuml.com partition_name]]" {
 end
 @enduml
 ```
-```plantuml
-@startuml
-start
-partition "[[http://plantuml.com partition_name]]" {
-    :read doc. on [[http://plantuml.com plantuml_website]];
-    :test diagram;
-}
-end
-@enduml
-```
+![05-40](Captures/05-40.png)
 
-#### Group, Partition, Package, Rectangle or Card
+#### 그룹, 파티션, 패키지, 네모 또는 카드
 
-You can group activity together by defining:
+그룹을 할 때 다음과 같은 키워드로 그룹 지을 수 있습니다:
 * group
 * partition
 * package
@@ -867,40 +777,11 @@ floating note: Note on Card
 end
 @enduml
 ```
-```plantuml
-@startuml
-start
-group Group
-  :Activity;
-end group
-floating note: Note on Group
+![05-41](Captures/05-41.png)
 
-partition Partition {
-  :Activity;
-}
-floating note: Note on Partition
-
-package Package {
-  :Activity;
-}
-floating note: Note on Package 
-
-rectangle Rectangle {
-  :Activity;
-}
-floating note: Note on Rectangle 
-
-card Card {
-  :Activity;
-}
-floating note: Note on Card
-end
-@enduml
-```
-
-### Swimlanes
-Using pipe `|`, you can define swimlanes.
-It's also possible to change swimlanes [color](https://plantuml.com/ko/color).
+### 수영장 레인 (Swimlanes)
+파이프 기호 `|` 를 이용하여 수영장 레인을 정의할 수 있습니다.
+[color](https://plantuml.com/ko/color) 를 이용한 색상정의도 가능합니다.
 
 ```java
 @startuml
@@ -917,23 +798,9 @@ start
 stop
 @enduml
 ```
-```plantuml
-@startuml
-|Swimlane1|
-start
-:foo1;
-|#AntiqueWhite|Swimlane2|
-:foo2;
-:foo3;
-|Swimlane1|
-:foo4;
-|Swimlane2|
-:foo5;
-stop
-@enduml
-```
+![05-42](Captures/05-42.png)
 
-You can add `if` conditional or `repeat` or `while` loop within swimlanes.
+`if` 조건식과 `repeat` 또는 `while` 루프에도 이 수영장 레인을 적용할 수 있습니다.
 ```java
 @startuml
 |#pink|Actor_For_red|
@@ -954,28 +821,9 @@ endif
 stop
 @enduml
 ```
-```plantuml
-@startuml
-|#pink|Actor_For_red|
-start
-if (color?) is (red) then
-#pink:**action red**;
-:foo1;
-else (not red)
-|#lightgray|Actor_For_no_red|
-#lightgray:**action not red**;
-:foo2;
-endif
-|Next_Actor|
-#lightblue:foo3;
-:foo4;
-|Final_Actor|
-#palegreen:foo5;
-stop
-@enduml
-```
+![05-43](Captures/05-43.png)
 
-You can also use `alias` with swimlanes, with this syntax:
+또한 다음과 같은 `alias` 별칭을 통하여 수영장 레인을 사용할 수 있습니다:
 * `|[#<color>|]<swimlane_alias>| <swimlane_title>`
 
 ```java
@@ -993,24 +841,12 @@ start
 stop
 @enduml
 ```
-```plantuml
-@startuml
-|#palegreen|f| fisherman
-|c| cook
-|#gold|e| eater
-|f|
-start
-:go fish;
-|c|
-:fry fish;
-|e|
-:eat fish;
-stop
-@enduml
-```
+![05-44](Captures/05-44.png)
 
-### Detach or kill [detach, kill]
-It's possible to remove an arrow using the `detach` or `kill` keyword:
+### `detach` 또는  `kill`
+
+`detach` 또는 `kill` 키워드를 이용하여 화살표를 지우는 것이 가능합니다:
+
 * `detach`
 
 ```java
@@ -1033,26 +869,7 @@ It's possible to remove an arrow using the `detach` or `kill` keyword:
  stop
 @enduml
 ```
-```plantuml
-@startuml
- :start;
- fork
-   :foo1;
-   :foo2;
- fork again
-   :foo3;
-   detach
- endfork
- if (foo4) then
-   :foo5;
-   detach
- endif
- :foo6;
- detach
- :foo7;
- stop
-@enduml
-```
+![05-45](Captures/05-45.png)
 
 * `kill`
 
@@ -1076,29 +893,10 @@ It's possible to remove an arrow using the `detach` or `kill` keyword:
  stop
 @enduml
 ```
-```plantuml
-@startuml
- :start;
- fork
-   :foo1;
-   :foo2;
- fork again
-   :foo3;
-   kill
- endfork
- if (foo4) then
-   :foo5;
-   kill
- endif
- :foo6;
- kill
- :foo7;
- stop
-@enduml
-```
+![05-45](Captures/05-45.png)
 
 ### SDL (Specification and Description Language)
-By changing the final `;` separator, you can set different rendering for the activity:
+활동 상태를 그리는 데 마지막 `;` 대신 다음과 같은 것들을 이용하여 [SDL](https://en.wikipedia.org/wiki/Specification_and_Description_Language)을 표현할 수 있습니다:
 * `|`
 * `<`
 * `>`
@@ -1135,36 +933,9 @@ end split
 :finish;
 @enduml
 ```
-```plantuml
-@startuml
-:Ready;
-:next(o)|
-:Receiving;
-split
- :nak(i)<
- :ack(o)>
-split again
- :ack(i)<
- :next(o)
- on several lines|
- :i := i + 1]
- :ack(o)>
-split again
- :err(i)<
- :nak(o)>
-split again
- :foo/
-split again
- :bar\\
-split again
- :i > 5}
-stop
-end split
-:finish;
-@enduml
-```
+![05-46](Captures/05-46.png)
 
-### Complete example
+### 종합 예제
 ```java
 @startuml
 
@@ -1203,48 +974,11 @@ stop
 
 @enduml
 ```
-```plantuml
-@startuml
+![05-47](Captures/05-47.png)
 
-start
-:ClickServlet.handleRequest();
-:new page;
-if (Page.onSecurityCheck) then (true)
-  :Page.onInit();
-  if (isForward?) then (no)
-    :Process controls;
-    if (continue processing?) then (no)
-      stop
-    endif
+### 조건 스타일
 
-    if (isPost?) then (yes)
-      :Page.onPost();
-    else (no)
-      :Page.onGet();
-    endif
-    :Page.onRender();
-  endif
-else (false)
-endif
-
-if (do redirect?) then (yes)
-  :redirect process;
-else
-  if (do forward?) then (yes)
-    :Forward request;
-  else (no)
-    :Render page template;
-  endif
-endif
-
-stop
-
-@enduml
-```
-
-### Condition Style
-
-#### Inside style (by default)
+#### 내부 스타일 (기본)
 ```java
 @startuml
 skinparam conditionStyle inside
@@ -1256,17 +990,7 @@ repeatwhile (<b>end)
 :act3;
 @enduml
 ```
-```plantuml
-@startuml
-skinparam conditionStyle inside
-start
-repeat
-  :act1;
-  :act2;
-repeatwhile (<b>end)
-:act3;
-@enduml
-```
+![05-48](Captures/05-48.png)
 
 ```java
 @startuml
@@ -1278,18 +1002,9 @@ repeatwhile (<b>end)
 :act3;
 @enduml
 ```
-```plantuml
-@startuml
-start
-repeat
-  :act1;
-  :act2;
-repeatwhile (<b>end)
-:act3;
-@enduml
-```
+![05-48](Captures/05-48.png)
 
-#### Diamond style
+#### 다이아몬드 스타일
 ```java
 @startuml
 skinparam conditionStyle diamond
@@ -1301,19 +1016,9 @@ repeatwhile (<b>end)
 :act3;
 @enduml
 ```
-```plantuml
-@startuml
-skinparam conditionStyle diamond
-start
-repeat
-  :act1;
-  :act2;
-repeatwhile (<b>end)
-:act3;
-@enduml
-```
+![05-49](Captures/05-49.png)
 
-#### InsideDiamond (or Foo1) style
+#### InsideDiamond (또는 foo1) 스타일
 ```java
 @startuml
 skinparam conditionStyle InsideDiamond
@@ -1325,17 +1030,7 @@ repeatwhile (<b>end)
 :act3;
 @enduml
 ```
-```plantuml
-@startuml
-skinparam conditionStyle InsideDiamond
-start
-repeat
-  :act1;
-  :act2;
-repeatwhile (<b>end)
-:act3;
-@enduml
-```
+![05-50](Captures/05-50.png)
 
 ```java
 @startuml
@@ -1348,22 +1043,12 @@ repeatwhile (<b>end)
 :act3;
 @enduml
 ```
-```plantuml
-@startuml
-skinparam conditionStyle foo1
-start
-repeat
-  :act1;
-  :act2;
-repeatwhile (<b>end)
-:act3;
-@enduml
-```
+![05-50](Captures/05-50.png)
 
-### Condition End Style
+### 조건 마지막 스타일
 
-#### Diamond style (by default)
-* With one branch
+#### 다이아몬드 스타일 (기본)
+* 단일 분기
 
 ```java
 @startuml
@@ -1376,19 +1061,9 @@ endif
 :C;
 @enduml
 ```
-```plantuml
-@startuml
-skinparam ConditionEndStyle diamond
-:A;
-if (decision) then (yes)
-    :B1;
-else (no)
-endif
-:C;
-@enduml
-```
+![05-51](Captures/05-51.png)
 
-* With two branches (`B1`, `B2`)
+* 2중 분기 (`B1`, `B2`)
 
 ```java
 @startuml
@@ -1402,21 +1077,10 @@ endif
 :C;
 @enduml
 ```
-```plantuml
-@startuml
-skinparam ConditionEndStyle diamond
-:A;
-if (decision) then (yes)
-    :B1;
-else (no)
-    :B2;
-endif
-:C;
-@enduml
-```
+![05-52](Captures/05-52.png)
 
-#### Horizontal line (hline) style
-* With one branch
+#### 수평 라인 (hline) 스타일
+* 단일 분기
 
 ```java
 @startuml
@@ -1429,19 +1093,9 @@ endif
 :C;
 @enduml
 ```
-```plantuml
-@startuml
-skinparam ConditionEndStyle hline
-:A;
-if (decision) then (yes)
-    :B1;
-else (no)
-endif
-:C;
-@enduml
-```
+![05-53](Captures/05-53.png)
 
-* With two branches (`B1`, `B2`)
+* 2중 분기 (`B1`, `B2`)
 
 ```java
 @startuml
@@ -1455,22 +1109,11 @@ endif
 :C;
 @enduml
 ```
-```plantuml
-@startuml
-skinparam ConditionEndStyle hline
-:A;
-if (decision) then (yes)
-    :B1;
-else (no)
-    :B2;
-endif
-:C;
-@enduml
-```
+![05-54](Captures/05-54.png)
 
-### Using (global) style
+### 글로벌 스타일
 
-#### Without style (by default)
+#### 글로벌 스타일 없음 (기본)
 ```java
 @startuml
 start
@@ -1489,27 +1132,10 @@ partition End {
 end
 @enduml
 ```
-```plantuml
-@startuml
-start
-:init;
--> test of color;
-if (color?) is (<color:red>red) then
-:print red;
-else 
-:print not red;
-note right: no color
-endif
-partition End {
-:end;
-}
--> this is the end;
-end
-@enduml
-```
+![05-55](Captures/05-55.png)
 
-#### With style
-You can use [style](https://plantuml.com/ko/style-evolution) to change rendering of elements.
+#### 스타일 지정
+[style](https://plantuml.com/ko/style-evolution) 스타일을 개별 항목에 적용할 수 있습니다.
 
 ```java
 @startuml
@@ -1564,56 +1190,4 @@ partition End {
 end
 @enduml
 ```
-```plantuml
-@startuml
-<style>
-activityDiagram {
-  BackgroundColor #33668E
-  BorderColor #33668E
-  FontColor #888
-  FontName arial
-
-  diamond {
-    BackgroundColor #ccf
-    LineColor #00FF00
-    FontColor green
-    FontName arial
-    FontSize 15
-  }
-  arrow {
-    FontColor gold
-    FontName arial
-    FontSize 15
-  }
-  partition {
-    LineColor red
-    FontColor green
-    RoundCorner 10
-    BackgroundColor PeachPuff
-  }
-  note {
-    FontColor Blue
-    LineColor Navy
-    BackgroundColor #ccf
-  }
-}
-document {
-   BackgroundColor transparent
-}
-</style>
-start
-:init;
--> test of color;
-if (color?) is (<color:red>red) then
-:print red;
-else 
-:print not red;
-note right: no color
-endif
-partition End {
-:end;
-}
--> this is the end;
-end
-@enduml
-```
+![05-56](Captures/05-56.png)
