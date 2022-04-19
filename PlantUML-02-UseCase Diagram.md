@@ -1,8 +1,4 @@
-# [Plant UML](https://plantuml.com/ko/)
-
-PlantUML 은 다이어그램을 빠르게 작성하기 위한 오픈 소스 프로젝트입니다.
-
-## Use Case 다이어그램
+## 유즈케이스(Use Case) 다이어그램
 
 다음과 같은 예제를 살펴봅니다 :
 > `skinparam shadowing false` 명령을 사용하면 그림자 모양이 안 나타나게 할 수 있습니다.

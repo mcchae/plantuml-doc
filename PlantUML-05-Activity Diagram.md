@@ -1,7 +1,3 @@
-# [Plant UML](https://plantuml.com/ko/)
-
-PlantUML 은 다이어그램을 빠르게 작성하기 위한 오픈 소스 프로젝트입니다.
-
 ## Activity 다이어그램
 
 [기존의 activity diagram 문법](https://plantuml.com/ko/activity-diagram-legacy) 은 몇몇 제약과 단점이 있습니다.(예를 들면, 유지보수가 어렵다.)
@@ -779,8 +775,8 @@ end
 ```
 ![05-41](Captures/05-41.png)
 
-### 수영장 레인 (Swimlanes)
-파이프 기호 `|` 를 이용하여 수영장 레인을 정의할 수 있습니다.
+### 수영레인 (Swimlanes)
+파이프 기호 `|` 를 이용하여 수영레인을 정의할 수 있습니다.
 [color](https://plantuml.com/ko/color) 를 이용한 색상정의도 가능합니다.
 
 ```java
@@ -800,7 +796,7 @@ stop
 ```
 ![05-42](Captures/05-42.png)
 
-`if` 조건식과 `repeat` 또는 `while` 루프에도 이 수영장 레인을 적용할 수 있습니다.
+`if` 조건식과 `repeat` 또는 `while` 루프에도 이 수영레인을 적용할 수 있습니다.
 ```java
 @startuml
 |#pink|Actor_For_red|
@@ -823,7 +819,7 @@ stop
 ```
 ![05-43](Captures/05-43.png)
 
-또한 다음과 같은 `alias` 별칭을 통하여 수영장 레인을 사용할 수 있습니다:
+또한 다음과 같은 `alias` 별칭을 통하여 수영레인을 사용할 수 있습니다:
 * `|[#<color>|]<swimlane_alias>| <swimlane_title>`
 
 ```java

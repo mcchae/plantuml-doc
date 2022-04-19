@@ -1,7 +1,3 @@
-# [Plant UML](https://plantuml.com/)
-
-PlantUML은 UML과 기타 여러 다이어그램을 쉽게 텍스트로 만들 수 있게 해 주는 오픈소스 입니다.
-
 ## 시퀀스 다이어그램 (Sequence Diagram)
 
 ### 기본 예제
