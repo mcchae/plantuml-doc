@@ -1,14 +1,9 @@
-# [Plant UML](https://plantuml.com/ko/)
-
-PlantUML 은 다이어그램을 빠르게 작성하기 위한 오픈 소스 프로젝트입니다.
-
 ## 네트워크 다이어그램
-[`nwdiag`](http://blockdiag.com/en/nwdiag/nwdiag-examples.html) has been created by [Takeshi Komiya](https://twitter.com/tk0miya) and allows to quickly draw network diagrams. So we thank him for his creation!
-Since the syntax is clear and simple, this has been integrated within PlantUML. We reuse here the examples that Takeshi has documented.
+[Takeshi Komiya](https://twitter.com/tk0miya) 가 만든 [nwdiag](http://blockdiag.com/en/nwdiag/nwdiag-examples.html) 기능을 이용하면 PlantUML 안에서 쉽게 네트워크 다이어그램을 만들 수 있습니다. 본 저자가 작성한 샘플을 이곳에서 다시 이용합니다.
 
-### Simple diagram
+### 간단한 다이어그램
 
-#### Define a network
+#### 네트워크 정의
 
 ```java
 @startuml
@@ -19,18 +14,9 @@ nwdiag {
 }
 @enduml
 ```
+![12-01](Captures/12-01.png)
 
-```plantuml
-@startuml
-nwdiag {
-  network dmz {
-      address = "210.x.x.x/24"
-  }
-}
-@enduml
-```
-
-#### Define some elements or servers on a network
+#### 네트워크에 서버나 다른 요소 정의
 
 ```java
 @startuml
@@ -44,21 +30,9 @@ nwdiag {
 }
 @enduml
 ```
+![12-02](Captures/12-02.png)
 
-```plantuml
-@startuml
-nwdiag {
-  network dmz {
-      address = "210.x.x.x/24"
-
-      web01 [address = "210.x.x.1"];
-      web02 [address = "210.x.x.2"];
-  }
-}
-@enduml
-```
-
-#### Full example
+#### 복잡한 예제
 
 ```java
 @startuml
@@ -80,29 +54,9 @@ nwdiag {
 }
 @enduml
 ```
+![12-03](Captures/12-03.png)
 
-```plantuml
-@startuml
-nwdiag {
-  network dmz {
-      address = "210.x.x.x/24"
-
-      web01 [address = "210.x.x.1"];
-      web02 [address = "210.x.x.2"];
-  }
-  network internal {
-      address = "172.x.x.x/24";
-
-      web01 [address = "172.x.x.1"];
-      web02 [address = "172.x.x.2"];
-      db01;
-      db02;
-  }
-}
-@enduml
-```
-
-### Define multiple addresses
+### 여러 주소 정의
 
 ```java
 @startuml
@@ -125,32 +79,11 @@ nwdiag {
 }
 @enduml
 ```
+![12-04](Captures/12-04.png)
 
-```plantuml
-@startuml
-nwdiag {
-  network dmz {
-      address = "210.x.x.x/24"
+### 노드 그룹화
 
-      // set multiple addresses (using comma)
-      web01 [address = "210.x.x.1, 210.x.x.20"];
-      web02 [address = "210.x.x.2"];
-  }
-  network internal {
-      address = "172.x.x.x/24";
-
-      web01 [address = "172.x.x.1"];
-      web02 [address = "172.x.x.2"];
-      db01;
-      db02;
-  }
-}
-@enduml
-```
-
-### Grouping nodes
-
-#### Define group inside network definitions
+#### 네트워크 정의 안에 그룹화하기
 
 ```java
 @startuml
@@ -180,37 +113,9 @@ nwdiag {
 }
 @enduml
 ```
+![12-05](Captures/12-05.png)
 
-```plantuml
-@startuml
-nwdiag {
-  network Sample_front {
-    address = "192.168.10.0/24";
-
-    // define group
-    group web {
-      web01 [address = ".1"];
-      web02 [address = ".2"];
-    }
-  }
-  network Sample_back {
-    address = "192.168.20.0/24";
-    web01 [address = ".1"];
-    web02 [address = ".2"];
-    db01 [address = ".101"];
-    db02 [address = ".102"];
-
-    // define network using defined nodes
-    group db {
-      db01;
-      db02;
-    }
-  }
-}
-@enduml
-```
-
-#### Define group outside of network definitions
+#### 네트워크 정의 상위에서 그룹화
 
 ```java
 @startuml
@@ -237,37 +142,11 @@ nwdiag {
 }
 @enduml
 ```
+![12-06](Captures/12-06.png)
 
-```plantuml
-@startuml
-nwdiag {
-  // define group outside of network definitions
-  group {
-    color = "#FFAAAA";
+#### 동일 네트워크에서 여러 그룹 적용
 
-    web01;
-    web02;
-    db01;
-  }
-
-  network dmz {
-    web01;
-    web02;
-  }
-  network internal {
-    web01;
-    web02;
-    db01;
-    db02;
-  }
-}
-@enduml
-```
-
-#### Define several groups on same network
-
-Example with 2 group
-
+* 2개의 그룹
 ```java
 @startuml
 nwdiag {
@@ -298,40 +177,9 @@ nwdiag {
 }
 @enduml
 ```
+![12-07](Captures/12-07.png)
 
-```plantuml
-@startuml
-nwdiag {
-  group {
-    color = "#FFaaaa";
-    web01;
-    db01;
-  }
-  group {
-    color = "#aaaaFF";
-    web02;
-    db02;
-  }
-  network dmz {
-      address = "210.x.x.x/24"
-
-      web01 [address = "210.x.x.1"];
-      web02 [address = "210.x.x.2"];
-  }
-  network internal {
-      address = "172.x.x.x/24";
-
-      web01 [address = "172.x.x.1"];
-      web02 [address = "172.x.x.2"];
-      db01 ;
-      db02 ;
-  }
-}
-@enduml
-```
-
-Example with 3 groups
-
+* 3개의 그룹
 ```java
 @startuml
 nwdiag {
@@ -367,51 +215,17 @@ nwdiag {
 }
 @enduml
 ```
-```plantuml
-@startuml
-nwdiag {
-  group {
-    color = "#FFaaaa";
-    web01;
-    db01;
-  }
-  group {
-    color = "#aaFFaa";
-    web02;
-    db02;
-  }
-  group {
-    color = "#aaaaFF";
-    web03;
-    db03;
-  }
+![12-08](Captures/12-08.png)
 
-  network dmz {
-      web01;
-      web02;
-      web03;
-  }
-  network internal {
-      web01;
-      db01 ;
-      web02;
-      db02 ;
-      web03;
-      db03;
-  }
-}
-@enduml
-```
+### 구문 확장 (네트워크 또는 그룹)
 
-### Extended Syntax (for network or group)
+#### 네트워크
 
-#### Network 
-
-For network or network's component, you can add or change:
-* addresses (separated by comma ,);
-* [color](https://plantuml.com/ko/color);
-* description;
-* [shape](https://plantuml.com/ko/deployment-diagram#5k3cq00k8n5ek362kjdn).
+네트워크 또는 네트워크 안에 컴포넌트에 대하여 다음과 같이 변경할 수 있습니다:
+* 콤마 등에 구분된 멀티 주소
+* [색상](https://plantuml.com/ko/color)
+* 설명
+* [모양](https://plantuml.com/ko/deployment-diagram#5k3cq00k8n5ek362kjdn)
 
 ```java
 @startuml
@@ -443,42 +257,13 @@ nwdiag {
 }
 @enduml
 ```
-```plantuml
-@startuml
-nwdiag {
-  network Sample_front {
-    address = "192.168.10.0/24"
-    color = "red"
+![12-09](Captures/12-09.png)
 
-    // define group
-    group web {
-      web01 [address = ".1, .2", shape = "node"]
-      web02 [address = ".2, .3"]
-    }
-  }
-  network Sample_back {
-    address = "192.168.20.0/24"
-    color = "palegreen"
-    web01 [address = ".1"]
-    web02 [address = ".2"]
-    db01 [address = ".101", shape = database ]
-    db02 [address = ".102"]
+#### 그룹
 
-    // define network using defined nodes
-    group db {
-      db01;
-      db02;
-    }
-  }
-}
-@enduml
-```
-
-#### Group
-
-For a group, you can add or change:
-* [color](https://plantuml.com/ko/color);
-* description.
+그룹에 대해서는 다음과 같은 내용을 변경할 수 있습니다:
+* [색상](https://plantuml.com/ko/color)
+* 설명
 
 ```java
 @startuml
@@ -504,35 +289,11 @@ nwdiag {
 }
 @enduml
 ```
-```plantuml
-@startuml
-nwdiag {
-  group {
-    color = "#CCFFCC";
-    description = "Long group description";
+![12-10](Captures/12-10.png)
 
-    web01;
-    web02;
-    db01;
-  }
-
-  network dmz {
-    web01;
-    web02;
-  }
-  network internal {
-    web01;
-    web02;
-    db01 [address = ".101", shape = database];
-  }
-}
-@enduml
-```
-
-### Using Sprites
-
-You can use all [sprites](https://plantuml.com/ko/sprite) (icons) from the [Standard Library](https://plantuml.com/ko/stdlib) or any other library.
-Use the notation `<$sprite>` to use a sprite, `\n` to make a new line, or any other [Creole](https://plantuml.com/ko/creole) syntax.
+### Sprite 아이콘 사용
+PlantUML에 있는 [표준 라이브러리](https://plantuml.com/ko/stdlib)를 비롯한 다른 어떤 라이브러리에서 [sprites](https://plantuml.com/ko/sprite) 아이콘을 사용할 수 있습니다.
+`<$sprite>`를 이용해서 아이콘을 사용할 수 있고 `\n`로 개행문자를 비롯한 [Creole](https://plantuml.com/ko/creole) 문법을 지원합니다.
 
 ```java
 @startuml
@@ -558,35 +319,11 @@ nwdiag {
 }
 @enduml
 ```
-```plantuml
-@startuml
-!include <office/Servers/application_server>
-!include <office/Servers/database_server>
+![12-11](Captures/12-11.png)
 
-nwdiag {
-  network dmz {
-      address = "210.x.x.x/24"
-
-      // set multiple addresses (using comma)
-      web01 [address = "210.x.x.1, 210.x.x.20",  description = "<$application_server>\n web01"]
-      web02 [address = "210.x.x.2",  description = "<$application_server>\n web02"];
-  }
-  network internal {
-      address = "172.x.x.x/24";
-
-      web01 [address = "172.x.x.1"];
-      web02 [address = "172.x.x.2"];
-      db01 [address = "172.x.x.100",  description = "<$database_server>\n db01"];
-      db02 [address = "172.x.x.101",  description = "<$database_server>\n db02"];
-  }
-}
-@enduml
-```
-
-### Using OpenIconic
-You can also use the icons from [OpenIconic](https://plantuml.com/ko/openiconic) in network or node descriptions.
-Use the notation `<&icon>` to make an icon, `<&icon*n>` to multiply the size by a factor `n`, and `\n` to make a newline:
-
+### 오픈 아이콘 사용
+네트워크 다이그램에 또한 [OpenIconic](https://plantuml.com/ko/openiconic) 이라는 오픈 아이콘을 이용할 수 있습니다.
+`<&icon>` 형식으로 아이콘을 이용하고, `<&icon*n>`에서 *n* 크기위 아이콘을 지정할 수 있고, `\n` 개행문자를 사용할 수 있습니다:
 ```java
 @startuml
 
@@ -618,47 +355,18 @@ nwdiag {
 }
 @enduml
 ```
-```plantuml
-@startuml
+![12-12](Captures/12-12.png)
 
-nwdiag {
-  group nightly {
-    color = "#FFAAAA";
-    description = "<&clock> Restarted nightly <&clock>";
-    web02;
-    db01;
-  }
-  network dmz {
-      address = "210.x.x.x/24"
-
-      user [description = "<&person*4.5>\n user1"];
-      // set multiple addresses (using comma)
-      web01 [address = "210.x.x.1, 210.x.x.20",  description = "<&cog*4>\nweb01"]
-      web02 [address = "210.x.x.2",  description = "<&cog*4>\nweb02"];
-
-  }
-  network internal {
-      address = "172.x.x.x/24";
-
-      web01 [address = "172.x.x.1"];
-      web02 [address = "172.x.x.2"];
-      db01 [address = "172.x.x.100",  description = "<&spreadsheet*4>\n db01"];
-      db02 [address = "172.x.x.101",  description = "<&spreadsheet*4>\n db02"];
-      ptr  [address = "172.x.x.110",  description = "<&print*4>\n ptr01"];
-  }
-}
-@enduml
-```
-
-```plantuml
+오픈 아이콘 목록을 다음과 같이 확인 가능합니다.
+```java
 @startuml
 listopeniconic
 @enduml
 ```
+![listopeniconic](listopeniconic.png)
 
-### Same nodes on more than two networks
-
-You can use same nodes on different networks (more than two networks); `nwdiag` use in this case `jump line` over networks.
+### 두 네트워크 이상에서의 동일 노드
+두 개 이상의 네트워크에서 서로 다른 네트워크를 동일 노드로 사용하다면 `nwdiag`에서는 `jump line`라는 라인 건너뛰기로 표현됩니다.
 
 ```java
 @startuml
@@ -696,46 +404,10 @@ nwdiag {
 }
 @enduml
 ```
-```plantuml
-@startuml
-nwdiag {
-  // define group at outside network definitions
-  group {
-    color = "#7777FF";
+![12-13](Captures/12-13.png)
 
-    web01;
-    web02;
-    db01;
-  }
-
-  network dmz {
-    color = "pink"
-
-    web01;
-    web02;
-  }
-
-  network internal {
-    web01;
-    web02;
-    db01 [shape = database ];
-  }
-
-  network internal2 {
-    color = "LightBlue";
-
-    web01;
-    web02;
-    db01;
-  }
-
-}
-@enduml
-```
-
-### Peer networks
-
-Peer networks are simple connections between two nodes, for which we don't use a horizontal "busbar" network
+### 피어 네트워크
+피어 네크워크는 일반적인 "busbar" 버스 바 형태의 네크워크가 아닌 방식으로 두 노드를 연결하는 네트워크를 나타냅니다.
 
 ```java
 @startuml
@@ -751,24 +423,11 @@ nwdiag {
 }
 @enduml
 ```
-```plantuml
-@startuml
-nwdiag {
-  inet [shape = cloud];
-  inet -- router;
+![12-14](Captures/12-14.png)
 
-  network {
-    router;
-    web01;
-    web02;
-  }
-}
-@enduml
-```
+### 피어 네트워크와 그룹
 
-### Peer networks and group
-
-#### Without group
+#### 그룹이 없는 경우
 ```java
 @startuml
 nwdiag {
@@ -786,25 +445,9 @@ nwdiag {
 }
 @enduml
 ```
-```plantuml
-@startuml
-nwdiag {
-    internet [ shape = cloud];
-    internet -- router;
+![12-15](Captures/12-15.png)
 
-    network proxy {
-        router;
-        app;
-    }
-    network default {
-    	app;
-        db;
-    }
-}
-@enduml
-```
-
-#### Group on first
+#### 첫번 째 그룹
 ```java
 @startuml
 nwdiag {
@@ -829,32 +472,9 @@ nwdiag {
 }
 @enduml
 ```
-```plantuml
-@startuml
-nwdiag {
-    internet [ shape = cloud];
-    internet -- router;
+![12-16](Captures/12-16.png)
 
-    group {
-      color = "pink";
-      app;
-      db;
-    }
-
-    network proxy {
-        router;
-        app;
-    }
-
-    network default {
-    	app;
-        db;
-    }
-}
-@enduml
-```
-
-#### Group on second
+#### 두 번째 그룹
 
 ```java
 @startuml
@@ -880,32 +500,9 @@ nwdiag {
 }
 @enduml
 ```
-```plantuml
-@startuml
-nwdiag {
-    internet [ shape = cloud];
-    internet -- router;
+![12-17](Captures/12-17.png)
 
-    network proxy {
-        router;
-        app;
-    }
-
-    group {
-      color = "pink";
-      app;
-      db;
-    }
-
-    network default {
-    	app;
-        db;
-    }
-}
-@enduml
-```
-
-#### Group on third
+#### 세 번째 그룹
 
 ```java
 @startuml
@@ -929,30 +526,9 @@ nwdiag {
 }
 @enduml
 ```
-```plantuml
-@startuml
-nwdiag {
-    internet [ shape = cloud];
-    internet -- router;
+![12-18](Captures/12-18.png)
 
-    network proxy {
-        router;
-        app;
-    }
-    network default {
-    	app;
-        db;
-    }
-    group {
-      color = "pink";
-      app;
-      db;
-    }
-}
-@enduml
-```
-
-### Add title, caption, header, footer or legend on network diagram
+### 제목, 자막, 헤더, 푸터 또는 색인 등
 
 ```java
 @startuml
@@ -976,32 +552,11 @@ end legend
 caption This is caption
 @enduml
 ```
-```plantuml
-@startuml
+![12-19](Captures/12-19.png)
 
-header some header
+### 그림자 조종
 
-footer some footer
-
-title My title
-
-nwdiag {
-  network inet {
-      web01 [shape = cloud]
-  }
-}
-
-legend
-The legend
-end legend
-
-caption This is caption
-@enduml
-```
-
-### With or without shadow
-
-#### With shadow (by default)
+#### 그림자 있게 (기본)
 ```java
 @startuml
 nwdiag {
@@ -1013,19 +568,9 @@ nwdiag {
 }
 @enduml
 ```
-```plantuml
-@startuml
-nwdiag {
-  network nw {
-    server;
-    internet;
-  }
-  internet [shape = cloud];
-}
-@enduml
-```
+![12-20](Captures/12-20.png)
 
-#### Without shadow
+#### 그림자 없이
 ```java
 @startuml
 <style>
@@ -1042,38 +587,23 @@ nwdiag {
 }
 @enduml
 ```
-```plantuml
-@startuml
-<style>
-root {
- shadowing 0
-}
-</style>
-nwdiag {
-  network nw {
-    server;
-    internet;
-  }
-  internet [shape = cloud];
-}
-@enduml
-```
+![12-21](Captures/12-21.png)
 
-### Change width of the networks
-You can change the width of the networks, especially in order to have the same full width for only some or all networks.
-Here are some examples, with all the possibilities:
+### 네트워크의 너비 조정
+네트워크 구성 요소의 전체 또는 일부 만큼의 너비를 갖도록 조정할 수 있습니다.
 
-#### without
+#### 너비 조정 없이
 ```java
 @startuml
 nwdiag {
   network NETWORK_BASE {
-   dev_A   [address = "dev_A" ]
+   dev_A [address = "dev_A" ]
    dev_B [address = "dev_B" ]
   }
   network IntNET1 {
    dev_B [address = "dev_B1" ]
    dev_M [address = "dev_M1" ]
+   dev_C [address = "dev_C" ]
   }
   network IntNET2 {
    dev_B [address = "dev_B2" ]
@@ -1082,33 +612,17 @@ nwdiag {
 }
 @enduml
 ```
-```plantuml
-@startuml
-nwdiag {
-  network NETWORK_BASE {
-   dev_A   [address = "dev_A" ]
-   dev_B [address = "dev_B" ]
-  }
-  network IntNET1 {
-   dev_B [address = "dev_B1" ]
-   dev_M [address = "dev_M1" ]
-  }
-  network IntNET2 {
-   dev_B [address = "dev_B2" ]
-   dev_M [address = "dev_M2" ]
- }
-}
-@enduml
-```
+![12-22](Captures/12-22.png)
 
-#### only the first
+#### 첫 번째 너비 맞춤
 ```java
 @startuml
 nwdiag {
   network NETWORK_BASE {
    width = full
-   dev_A   [address = "dev_A" ]
+   dev_A [address = "dev_A" ]
    dev_B [address = "dev_B" ]
+   dev_C [address = "dev_C" ]
   }
   network IntNET1 {
    dev_B [address = "dev_B1" ]
@@ -1121,34 +635,17 @@ nwdiag {
 }
 @enduml
 ```
-```plantuml
-@startuml
-nwdiag {
-  network NETWORK_BASE {
-   width = full
-   dev_A   [address = "dev_A" ]
-   dev_B [address = "dev_B" ]
-  }
-  network IntNET1 {
-   dev_B [address = "dev_B1" ]
-   dev_M [address = "dev_M1" ]
-  }
-  network IntNET2 {
-   dev_B [address = "dev_B2" ]
-   dev_M [address = "dev_M2" ]
- }
-}
-@enduml
-```
+![12-23](Captures/12-23.png)
 
-### the first and the second
+### 두 번째 너비 까지 맞춤
 ```java
 @startuml
 nwdiag {
   network NETWORK_BASE {
    width = full
-   dev_A   [address = "dev_A" ]
+   dev_A [address = "dev_A" ]
    dev_B [address = "dev_B" ]
+   dev_C [address = "dev_C" ]
   }
   network IntNET1 {
    width = full
@@ -1162,56 +659,17 @@ nwdiag {
 }
 @enduml
 ```
-```plantuml
-@startuml
-nwdiag {
-  network NETWORK_BASE {
-   width = full
-   dev_A   [address = "dev_A" ]
-   dev_B [address = "dev_B" ]
-  }
-  network IntNET1 {
-   width = full
-   dev_B [address = "dev_B1" ]
-   dev_M [address = "dev_M1" ]
-  }
-  network IntNET2 {
-   dev_B [address = "dev_B2" ]
-   dev_M [address = "dev_M2" ]
- }
-}
-@enduml
-```
+![12-24](Captures/12-24.png)
 
-#### all the network (with same full width)
+#### 모든 네트워크에 대한 너비 맞춤
 ```java
 @startuml
 nwdiag {
   network NETWORK_BASE {
    width = full
-   dev_A   [address = "dev_A" ]
+   dev_A [address = "dev_A" ]
    dev_B [address = "dev_B" ]
-  }
-  network IntNET1 {
-   width = full
-   dev_B [address = "dev_B1" ]
-   dev_M [address = "dev_M1" ]
-  }
-  network IntNET2 {
-   width = full
-   dev_B [address = "dev_B2" ]
-   dev_M [address = "dev_M2" ]
- }
-}
-@enduml
-````
-```plantuml
-@startuml
-nwdiag {
-  network NETWORK_BASE {
-   width = full
-   dev_A   [address = "dev_A" ]
-   dev_B [address = "dev_B" ]
+   dev_C [address = "dev_C" ]
   }
   network IntNET1 {
    width = full
@@ -1226,11 +684,12 @@ nwdiag {
 }
 @enduml
 ```
+![12-25](Captures/12-25.png)
 
-### Other internal networks
-You can define other internal networks (TCP/IP, USB, SERIAL,...).
+### 다른 내부 네트워크
+TCP/IP, USB, SERIAL 등과 같은 다른 내부 네트워크를 정의할 수 있습니다.
 
-#### Without address or type
+#### 주소나 형식 없이
 ```java
 @startuml
 nwdiag {
@@ -1246,23 +705,9 @@ nwdiag {
 }
 @enduml
 ```
-```plantuml
-@startuml
-nwdiag {
-  network LAN1 {
-     a [address = "a1"];
-  }
-  network LAN2 {
-     a [address = "a2"];
-     switch;
-  }
-  switch -- equip;
-  equip -- printer;
-}
-@enduml
-```
+![12-26](Captures/12-26.png)
 
-#### With address or type
+#### 주소나 형식 포함
 ```java
 @startuml
 nwdiag {
@@ -1280,27 +725,11 @@ nwdiag {
 }
 @enduml
 ```
-```plantuml
-@startuml
-nwdiag {
-  network LAN1 {
-     a [address = "a1"];
-  }
-  network LAN2 {
-     a [address = "a2"];
-     switch [address = "s2"];
-  }
-  switch -- equip;
-  equip [address = "e3"];
-  equip -- printer;
-  printer [address = "USB"];
-}
-@enduml
-```
+![12-27](Captures/12-27.png)
 
-### Using (global) style
+### 글로벌 스타일 사용
 
-#### Without style (by default)
+#### 스타일 정의 없는 경우 (기본)
 ```java
 @startuml
 nwdiag {
@@ -1325,34 +754,10 @@ nwdiag {
 }
 @enduml
 ```
-```plantuml
-@startuml
-nwdiag {
-  network DMZ {
-      address = "y.x.x.x/24"
-      web01 [address = "y.x.x.1"];
-      web02 [address = "y.x.x.2"];
-  }
+![12-28](Captures/12-28.png)
 
-   network Internal {
-    web01;
-    web02;
-    db01 [address = "w.w.w.z", shape = database];
-  } 
-
-    group {
-    description = "long group label";
-    web01;
-    web02;
-    db01;
-  }
-}
-@enduml
-```
-
-#### With style
-
-You can use [style](https://plantuml.com/ko/style-evolution) to change rendering of elements.
+#### 스타일 적용
+[style](https://plantuml.com/ko/style-evolution) 스타일을 적용한 경우
 ```java
 @startuml
 <style>
@@ -1412,69 +817,11 @@ nwdiag {
 }
 @enduml
 ```
-```plantuml
-@startuml
-<style>
-nwdiagDiagram {
-  network {
-    BackGroundColor green
-    LineColor red
-    LineThickness 1.0
-    FontSize 18
-    FontColor navy
-  }
-  server {
-    BackGroundColor pink
-    LineColor yellow
-    LineThickness 1.0
-    ' FontXXX only for description or label
-    FontSize 18
-    FontColor #blue
-  }
-  arrow {
-    ' FontXXX only for address 
-    FontSize 17
-    FontColor #red
-    FontName Monospaced
-    LineColor black
-  }
-  group {
-    BackGroundColor cadetblue
-    LineColor black
-    LineThickness 2.0
-    FontSize 11
-    FontStyle bold
-    Margin 5
-    Padding 5
-  }
-}
-</style>
-nwdiag {
-  network DMZ {
-      address = "y.x.x.x/24"
-      web01 [address = "y.x.x.1"];
-      web02 [address = "y.x.x.2"];
-  }
+![12-29](Captures/12-29.png)
 
-   network Internal {
-    web01;
-    web02;
-    db01 [address = "w.w.w.z", shape = database];
-  } 
+### 부록: 네트워크 다이얼로그에서 다른 형태 확인
 
-    group {
-    description = "long group label";
-    web01;
-    web02;
-    db01;
-  }
-}
-@enduml
-```
-
-### Appendix: Test of all shapes on Network diagram (nwdiag)
-
-#### Example 1
+#### 예제 1
 ```java
 @startuml
 nwdiag {
@@ -1491,24 +838,9 @@ nwdiag {
 }
 @enduml
 ```
-```plantuml
-@startuml
-nwdiag {
-  network Network {
-    Actor       [shape = actor]       
-    Agent       [shape = agent]       
-    Artifact    [shape = artifact]    
-    Boundary    [shape = boundary]    
-    Card        [shape = card]        
-    Cloud       [shape = cloud]       
-    Collections [shape = collections] 
-    Component   [shape = component]   
-  }
-}
-@enduml
-```
+![12-30](Captures/12-30.png)
 
-#### Example 2
+#### 예제 2
 ```java
 @startuml
 nwdiag {
@@ -1525,24 +857,9 @@ nwdiag {
 }
 @enduml
 ```
-```plantuml
-@startuml
-nwdiag {
-  network Network {
-    Control     [shape = control]     
-    Database    [shape = database]    
-    Entity      [shape = entity]      
-    File        [shape = file]        
-    Folder      [shape = folder]      
-    Frame       [shape = frame]       
-    Hexagon     [shape = hexagon]     
-    Interface   [shape = interface]   
-  }
-}
-@enduml
-```
+![12-31](Captures/12-31.png)
 
-#### Example 3
+#### 예제 3
 ```java
 @startuml
 nwdiag {
@@ -1560,27 +877,11 @@ nwdiag {
 }
 @enduml
 ```
-```plantuml
-@startuml
-nwdiag {
-  network Network {
-    Label       [shape = label]       
-    Node        [shape = node]        
-    Package     [shape = package]     
-    Person      [shape = person]      
-    Queue       [shape = queue]       
-    Stack       [shape = stack]       
-    Rectangle   [shape = rectangle]   
-    Storage     [shape = storage]     
-    Usecase     [shape = usecase]     
-  }
-}
-@enduml
-```
+![12-32](Captures/12-32.png)
 
-> #### Need to Fix
-> * Overlap of label for folder
-> * Hexagon shape is missing
+> #### 수정할 필요가 있는 사항들
+> * 폴더 라벨이 제대로 표시 안되는 부분
+> * 헥사곤 형태 빠짐
 
 ```java
 @startuml
@@ -1592,16 +893,7 @@ Hexagon [shape = hexagon]
 }
 @enduml
 ```
-```plantuml
-@startuml
-nwdiag {
-network Network {
-Folder [shape = folder]
-Hexagon [shape = hexagon]
-}
-}
-@enduml
-```
+![12-33](Captures/12-33.png)
 
 ```java
 @startuml
@@ -1613,13 +905,4 @@ Hexagon [shape = hexagon, description = "Test, long long label\nTest, long long 
 }
 @enduml
 ```
-```plantuml
-@startuml
-nwdiag {
-network Network {
-Folder [shape = folder, description = "Test, long long label\nTest, long long label\n"]
-Hexagon [shape = hexagon, description = "Test, long long label\nTest, long long label"]
-}
-}
-@enduml
-```
+![12-34](Captures/12-34.png)
