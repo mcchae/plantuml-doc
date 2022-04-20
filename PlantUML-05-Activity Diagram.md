@@ -1,6 +1,6 @@
-## Activity 다이어그램
+## 활동 다이어그램
 
-[기존의 activity diagram 문법](https://plantuml.com/ko/activity-diagram-legacy) 은 몇몇 제약과 단점이 있습니다.(예를 들면, 유지보수가 어렵다.)
+[기존의 활동 diagram 문법](https://plantuml.com/ko/활동-diagram-legacy) 은 몇몇 제약과 단점이 있습니다.(예를 들면, 유지보수가 어렵다.)
 
 그래서 완전 새로운 문법과 구현이 베타버전으로 고안되었고, 더 나은 포맷과 문법으로 정의할 수 있었습니다.
 이 새로운 구현의 또 다른 장점은 (시퀀스 다이어그램과 같이) Graphviz를 설치할 필요 없이 수행된다는 것입니다.
