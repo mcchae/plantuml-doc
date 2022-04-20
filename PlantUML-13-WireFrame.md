@@ -1,22 +1,18 @@
-# [Plant UML](https://plantuml.com/ko/)
+## 와이어프레임 (Salt)
 
-PlantUML 은 다이어그램을 빠르게 작성하기 위한 오픈 소스 프로젝트입니다.
+**Salt**는 PlantUML에서 소프트웨어 와이어프레임 [Website Wireframe or Page Schematic or Screen Blueprint](https://en.wikipedia.org/wiki/Website_wireframe)을 만들 수 있는 하위 프로젝트 입니다.
 
-## Sault (Wireframe)
+본 툴의 목적은 간단한 샘플 사용자 인터페이스를 보여주는 것입니다.
 
-**Salt** is a subproject included in PlantUML that may help you to design graphical interface or [Website Wireframe or Page Schematic or Screen Blueprint](https://en.wikipedia.org/wiki/Website_wireframe).
+`@startsalt` 키워드로 시작하거나 `@startuml` 다음에 나타나는 `salt` 키워드의 라인에 의해 시작됩니다.
 
-The goal of this tool is to discuss about simple and sample windows.
-
-You can use either `@startsalt` keyword, or `@startuml` followed by a line with `salt` keyword.
-
-### Basic widgets
-A window must start and end with brackets. You can then define:
-* Button using `[` and `]`.
-* Radio button using `(` and `)`.
-* Checkbox using `[` and `]`.
-* User text area using `"`.
-* Droplist using `^`.
+### 기본 위짓
+윈도우는 대괄호로 표현합니다. 다음과 같은 표현이 가능합니다:
+* `[` 과 `]` 로 표현되는 단추
+* `(` 과 `)` 로 표현되는 라디오 단추
+* `[` 과 `]` 로 표현되는 체크박스
+* `"` 로 표현되는 사용자 텍스트 입력 상자
+* `^` 로 표현되는 드랍리스트
 
 ```java
 @startsalt
@@ -32,22 +28,9 @@ A window must start and end with brackets. You can then define:
 }
 @endsalt
 ```
-```plantuml
-@startsalt
-{
-  Just plain text
-  [This is my button]
-  ()  Unchecked radio
-  (X) Checked radio
-  []  Unchecked box
-  [X] Checked box
-  "Enter text here   "
-  ^This is a droplist^
-}
-@endsalt
-```
+![13-01](Captures/13-01.png)
 
-Here is an attempt to create a [text area](https://html.spec.whatwg.org/multipage/form-elements.html#the-textarea-element):
+다음은 [텍스트 입력상자](https://html.spec.whatwg.org/multipage/form-elements.html#the-textarea-element)를 만드는 방법입니다:
 
 ```java
 @startsalt
@@ -59,22 +42,13 @@ Here is an attempt to create a [text area](https://html.spec.whatwg.org/multipag
 }
 @endsalt
 ```
-```plantuml
-@startsalt
-{+
-   This is a long
-   text in a textarea
-   .
-   "                         "
-}
-@endsalt
-```
+![13-02](Captures/13-02.png)
 
-> Note:
-> * the dot (`.`) to fill up vertical space;
-> * the last line of space (`"  "`) to make the area wider.
+> 주의:
+> * 점은 (`.`) 세로 스페이스를 채우는데 사용됩니다
+> * 마지막 줄의 (`"  "`) 스페이스는 텍스트 입력 상자의 가로 길이를 나타냅니다
 
-Then you can add [scroll bar](https://plantuml.com/en/salt#6b6xvjbaj4gpk362kjkx):
+[스크롤바](https://plantuml.com/en/salt#6b6xvjbaj4gpk362kjkx)도 추가할 수 있습니다:
 
 ```java
 @startsalt
@@ -86,16 +60,7 @@ Then you can add [scroll bar](https://plantuml.com/en/salt#6b6xvjbaj4gpk362kjkx)
 }
 @endsalt
 ```
-```plantuml
-@startsalt
-{SI
-   This is a long
-   text in a textarea
-   .
-   "                         "
-}
-@endsalt
-```
+![13-03](Captures/13-03.png)
 
 ```java
 @startsalt
@@ -107,19 +72,11 @@ Then you can add [scroll bar](https://plantuml.com/en/salt#6b6xvjbaj4gpk362kjkx)
 }
 @endsalt
 ```
-```plantuml
-@startsalt
-{S-
-   This is a long
-   text in a textarea
-   .
-   "                         "
-}
-@endsalt
-```
+![13-04](Captures/13-04.png)
 
-### Open, close droplist
-You can open a droplist, by adding values enclosed by `^`, as:
+### 드랍리스트의 열기 및 닫기
+앞뒤의 `^` 기호로 이루어진 드랍리스트의 경우, 다시 앞뒤의 `^` 기호로 이루어진 하위 항목을 추가하여 열린 모습을 보여줄 수 있습니다.
+반복되는 `^^`는 `^`를 이용해도 됩니다.:
 
 ```java
 @startsalt
@@ -130,20 +87,12 @@ You can open a droplist, by adding values enclosed by `^`, as:
 }
 @endsalt
 ```
-```plantuml
-@startsalt
-{
-  ^This is a closed droplist^ |
-  ^This is an open droplist^^ item 1^^ item 2^ |
-  ^This is another open droplist^ item 1^ item 2^ 
-}
-@endsalt
-```
+![13-05](Captures/13-05.png)
 
-### Using grid [| and #, !, -, +]
-A table is automatically created when you use an opening bracket `{`. And you have to use `|` to separate columns.
+### [| 와 #, !, -, +] 를 이용한 그리드 사용
+`{` 중괄호를 열고 그 안에 `|` 구분자를 이용한 그리드 (또는 폼)를 그릴 수 있습니다.
 
-For example:
+예를 들어:
 
 ```java
 @startsalt
@@ -154,22 +103,15 @@ For example:
 }
 @endsalt
 ```
-```plantuml
-@startsalt
-{
-  Login    | "MyName   "
-  Password | "****     "
-  [Cancel] | [  OK   ]
-}
-@endsalt
-```
+![13-06](Captures/13-06.png)
 
-| **Symbol** | **Result** |
+다음은 중과호를 열고나서 바로 올 수 있는 심볼에 대한 내용입니다.
+| **심볼** | **결과** |
 |:---:|---|
-| `#`	| To display all vertical and horizontal lines
-| `!`	| To display all vertical lines
-| `-`	| To display all horizontal lines
-| `+`	| To display external lines
+| `#`	| 모든 가로 및 세로 줄 표시
+| `!`	| 모든 세로 줄 표시
+| `-`	| 모든 가로 줄 표시
+| `+`	| 외부 줄 표시
 
 ```java
 @startsalt
@@ -180,17 +122,9 @@ For example:
 }
 @endsalt
 ```
-```plantuml
-@startsalt
-{+
-  Login    | "MyName   "
-  Password | "****     "
-  [Cancel] | [  OK   ]
-}
-@endsalt
-```
+![13-07](Captures/13-07.png)
 
-### Group box [^]
+### 그룹 박스 [^]
 ```java
 @startsalt
 {^"My group box"
@@ -200,18 +134,10 @@ For example:
 }
 @endsalt
 ```
-```plantuml
-@startsalt
-{^"My group box"
-  Login    | "MyName   "
-  Password | "****     "
-  [Cancel] | [  OK   ]
-}
-@endsalt
-```
+![13-08](Captures/13-08.png)
 
-### Using separator [`..`, `==`, `~~`, `--`]
-You can use several horizontal lines as separator.
+### 구분자 사용 [`..`, `==`, `~~`, `--`]
+그리드나 테이블 그룹 박스 등에 `..`, `==`, `~~`, `--` 등의 구분자를 표시할 수 있습니다.
 
 ```java
 @startsalt
@@ -228,24 +154,10 @@ You can use several horizontal lines as separator.
 }
 @endsalt
 ```
-```plantuml
-@startsalt
-{
-  Text1
-  ..
-  "Some field"
-  ==
-  Note on usage
-  ~~
-  Another text
-  --
-  [Ok]
-}
-@endsalt
-```
+![13-09](Captures/13-09.png)
 
-### Tree widget [T]
-To have a Tree, you have to start with `{T` and to use `+` to denote hierarchy.
+### 트리 위젯 [T]
+트리 UI를 표현하려면 `{T`로 시작하고 `+`로 계층 분리된 항목을 넣으면 됩니다.
 
 ```java
 @startsalt
@@ -267,29 +179,10 @@ To have a Tree, you have to start with `{T` and to use `+` to denote hierarchy.
 }
 @endsalt
 ```
-```plantuml
-@startsalt
-{
-{T
- + World
- ++ America
- +++ Canada
- +++ USA
- ++++ New York
- ++++ Boston
- +++ Mexico
- ++ Europe
- +++ Italy
- +++ Germany
- ++++ Berlin
- ++ Africa
-}
-}
-@endsalt
-```
+![13-10](Captures/13-10.png)
 
-### Tree table [T]
-You can combine trees with tables.
+### 트리 테이블 [T]
+트리와 테이블을 묶어서 사용할 수 있습니다.
 
 ```java
 @startsalt
@@ -312,29 +205,9 @@ You can combine trees with tables.
 }
 @endsalt
 ```
-```plantuml
-@startsalt
-{
-{T
-+Region        | Population    | Age
-+ World        | 7.13 billion  | 30
-++ America     | 964 million   | 30
-+++ Canada     | 35 million    | 30
-+++ USA        | 319 million   | 30
-++++ NYC       | 8 million     | 30
-++++ Boston    | 617 thousand  | 30
-+++ Mexico     | 117 million   | 30
-++ Europe      | 601 million   | 30
-+++ Italy      | 61 million    | 30
-+++ Germany    | 82 million    | 30
-++++ Berlin    | 3 million     | 30
-++ Africa      | 1 billion     | 30
-}
-}
-@endsalt
-```
+![13-11](Captures/13-11.png)
 
-And add lines.
+테이블에 개별 라인도 지정 가능합니다.
 
 ```java
 @startsalt
@@ -371,44 +244,10 @@ And add lines.
 }
 @endsalt
 ```
-```plantuml
-@startsalt
-{
-..
-== with T!
-{T!
-+Region        | Population    | Age
-+ World        | 7.13 billion  | 30
-++ America     | 964 million   | 30
-}
-..
-== with T-
-{T-
-+Region        | Population    | Age
-+ World        | 7.13 billion  | 30
-++ America     | 964 million   | 30
-}
-..
-== with T+
-{T+
-+Region        | Population    | Age
-+ World        | 7.13 billion  | 30
-++ America     | 964 million   | 30
-}
-..
-== with T#
-{T#
-+Region        | Population    | Age
-+ World        | 7.13 billion  | 30
-++ America     | 964 million   | 30
-}
-..
-}
-@endsalt
-```
+![13-12](Captures/13-12.png)
 
-### Enclosing brackets [{, }]
-You can define subelements by opening a new opening bracket.
+### 중괄호 [{, }] 묶기
+하위 항목은 중괄호를 새로 열어 표현할 수 있습니다.
 
 ```java
 @startsalt
@@ -420,19 +259,10 @@ Superclass:  | { "java.lang.Object " | [Browse...] }
 }
 @endsalt
 ```
-```plantuml
-@startsalt
-{
-Name         | "                 "
-Modifiers:   | { (X) public | () default | () private | () protected
-                [] abstract | [] final   | [] static }
-Superclass:  | { "java.lang.Object " | [Browse...] }
-}
-@endsalt
-```
+![13-13](Captures/13-13.png)
 
-### Adding tabs [/]
-You can add tabs using `{/` notation. Note that you can use HTML code to have bold text.
+### 탭 추가 [/]
+`{/` 로 시작하는 탭 인터페이스를 추가할 수 있습니다. HTML 코드로 `<b>` 굵게 표현할 수 있습니다.
 
 ```java
 @startsalt
@@ -448,23 +278,9 @@ You can add tabs using `{/` notation. Note that you can use HTML code to have bo
 }
 @endsalt
 ```
-```plantuml
-@startsalt
-{+
-{/ <b>General | Fullscreen | Behavior | Saving }
-{
-{ Open image in: | ^Smart Mode^ }
-[X] Smooth images when zoomed
-[X] Confirm image deletion
-[ ] Show hidden images
-}
-[Close]
-}
-@endsalt
-```
+![13-14](Captures/13-14.png)
 
-Tab could also be vertically oriented:
-
+기본적으로 탭 인터페이스는 상단에 표시되지만, `{/ ... }` 탭 블락 다음에 `|`를 추가하여 왼편에 탭이 표현되도록 할 수도 있습니다:
 ```java
 @startsalt
 {+
@@ -482,26 +298,10 @@ Saving } |
 }
 @endsalt
 ```
-```plantuml
-@startsalt
-{+
-{/ <b>General
-Fullscreen
-Behavior
-Saving } |
-{
-{ Open image in: | ^Smart Mode^ }
-[X] Smooth images when zoomed
-[X] Confirm image deletion
-[ ] Show hidden images
-[Close]
-}
-}
-@endsalt
-```
+![13-15](Captures/13-15.png)
 
-### Using menu [*]
-You can add a menu by using `{*` notation.
+### 메뉴 사용 [*]
+`{*` 를 이용하여 메뉴를 사용할 수 있습니다.
 
 ```java
 @startsalt
@@ -518,23 +318,9 @@ You can add a menu by using `{*` notation.
 }
 @endsalt
 ```
-```plantuml
-@startsalt
-{+
-{* File | Edit | Source | Refactor }
-{/ General | Fullscreen | Behavior | Saving }
-{
-{ Open image in: | ^Smart Mode^ }
-[X] Smooth images when zoomed
-[X] Confirm image deletion
-[ ] Show hidden images
-}
-[Close]
-}
-@endsalt
-```
+![13-16](Captures/13-16.png)
 
-It is also possible to open a menu:
+물론 메뉴를 연 것을 표시할 수 있습니다:
 
 ```java
 @startsalt
@@ -552,24 +338,9 @@ It is also possible to open a menu:
 }
 @endsalt
 ```
-```plantuml
-@startsalt
-{+
-{* File | Edit | Source | Refactor
- Refactor | New | Open File | - | Close | Close All }
-{/ General | Fullscreen | Behavior | Saving }
-{
-{ Open image in: | ^Smart Mode^ }
-[X] Smooth images when zoomed
-[X] Confirm image deletion
-[ ] Show hidden images
-}
-[Close]
-}
-@endsalt
-```
+![13-17](Captures/13-17.png)
 
-Like it is possible to open a droplist:
+마찬가지 방식으로 드랍리스트도 열 수 있습니다:
 
 ```java
 @startsalt
@@ -586,26 +357,13 @@ Like it is possible to open a droplist:
 }
 @endsalt
 ```
-```plantuml
-@startsalt
-{+
-{* File | Edit | Source | Refactor }
-{/ General | Fullscreen | Behavior | Saving }
-{
-{ Open image in: | ^Smart Mode^^Normal Mode^ }
-[X] Smooth images when zoomed
-[X] Confirm image deletion
-[ ] Show hidden images
-}
-[Close]
-}
-@endsalt
-```
+![13-18](Captures/13-18.png)
 
-### Advanced table
+### 테이블 부가 설명
 You can use two special notations for table :
-* `*` to indicate that a cell with span with left
-* `.` to denotate an empty cell
+테이블의 셀에 대하여 다음과 같은 두 가지 특별한 기능이 제공됩니다:
+* `*` 왼쪽 셀과 병합합니다
+* `.` 비어 있는 셀을 타나냅니다
 
 ```java
 @startsalt
@@ -616,19 +374,11 @@ Row header 2 | A long cell | *
 }
 @endsalt
 ```
-```plantuml
-@startsalt
-{#
-. | Column 2 | Column 3
-Row header 1 | value 1 | value 2
-Row header 2 | A long cell | *
-}
-@endsalt
-```
+![13-19](Captures/13-19.png)
 
-### Scroll Bars [S, SI, S-]
-You can use `{S` notation for [scroll bar](https://en.wikipedia.org/wiki/Scrollbar) like in following examples:
-* `{S`: for horizontal and vertical scrollbars
+### 스크롤 바 [S, SI, S-]
+다음의 예제처럼 `{S`를 이용한 [스크롤 바](https://en.wikipedia.org/wiki/Scrollbar)를 표시할 수 있습니다:
+* `{S`: 가로와 세로 스크롤 바 표시
 
 ```java
 @startsalt
@@ -641,19 +391,9 @@ Message
 }
 @endsalt
 ```
-```plantuml
-@startsalt
-{S
-Message
-.
-.
-.
-.
-}
-@endsalt
-```
+![13-20](Captures/13-20.png)
 
-* `{SI` : for vertical scrollbar only
+* `{SI` : 세로 스크롤 바만 표시
 
 ```java
 @startsalt
@@ -666,19 +406,9 @@ Message
 }
 @endsalt
 ```
-```plantuml
-@startsalt
-{SI
-Message
-.
-.
-.
-.
-}
-@endsalt
-```
+![13-21](Captures/13-21.png)
 
-* `{S-` : for horizontal scrollbar only
+* `{S-` : 가로 스롤 바만 표
 
 ```java
 @startsalt
@@ -691,20 +421,10 @@ Message
 }
 @endsalt
 ```
-```plantuml
-@startsalt
-{S-
-Message
-.
-.
-.
-.
-}
-@endsalt
-```
+![13-22](Captures/13-22.png)
 
-### Colors
-It is possible to change text [color](https://plantuml.com/en/color) of widget.
+### 색상
+위젯의 [색상](https://plantuml.com/en/color)을 변경할 수 있습니다.
 
 ```java
 @startsalt
@@ -722,25 +442,10 @@ It is possible to change text [color](https://plantuml.com/en/color) of widget.
 }
 @endsalt
 ```
-```plantuml
-@startsalt
-{
-  <color:Blue>Just plain text
-  [This is my default button]
-  [<color:green>This is my green button]
-  [<color:#9a9a9a>This is my disabled button]
-  []  <color:red>Unchecked box
-  [X] <color:green>Checked box
-  "Enter text here   "
-  ^This is a droplist^
-  ^<color:#9a9a9a>This is a disabled droplist^
-  ^<color:red>This is a red droplist^
-}
-@endsalt
-```
+![13-23](Captures/13-23.png)
 
-### Creole on Salt
-You can use [Creole or HTML Creole](https://plantuml.com/en/creole) on salt:
+### Creole
+[Creole or HTML Creole](https://plantuml.com/en/creole) 을 이 와이어프레임 다이얼로그에도 적용할 수 있습니다:
 
 ```java
 @startsalt
@@ -817,84 +522,10 @@ Enjoy!
 }}
 @endsalt
 ```
-```plantuml
-@startsalt
-{{^==Creole
-  This is **bold**
-  This is //italics//
-  This is ""monospaced""
-  This is --stricken-out--
-  This is __underlined__
-  This is ~~wave-underlined~~
-  --test Unicode and icons--
-  This is <U+221E> long
-  This is a <&code> icon
-  Use image : <img:http://plantuml.com/logo3.png>
-}|
-{^<b>HTML Creole 
- This is <b>bold</b>
-  This is <i>italics</i>
-  This is <font:monospaced>monospaced</font>
-  This is <s>stroked</s>
-  This is <u>underlined</u>
-  This is <w>waved</w>
-  This is <s:green>stroked</s>
-  This is <u:red>underlined</u>
-  This is <w:#0000FF>waved</w>
-  -- other examples --
-  This is <color:blue>Blue</color>
-  This is <back:orange>Orange background</back>
-  This is <size:20>big</size>
-}|
-{^Creole line
-You can have horizontal line
-----
-Or double line
-====
-Or strong line
-____
-Or dotted line
-..My title..
-Or dotted title
-//and title... //
-==Title==
-Or double-line title
---Another title--
-Or single-line title
-Enjoy!
-}|
-{^Creole list item
-**test list 1**
-* Bullet list
-* Second item
-** Sub item
-*** Sub sub item
-* Third item
-----
-**test list 2**
-# Numbered list
-# Second item
-## Sub item
-## Another sub item
-# Third item
-}|
-{^Mix on salt
-  ==<color:Blue>Just plain text
-  [This is my default button]
-  [<b><color:green>This is my green button]
-  [ ---<color:#9a9a9a>This is my disabled button-- ]
-  []  <size:20><color:red>Unchecked box
-  [X] <color:green>Checked box
-  "//Enter text here//   "
-  ^This is a droplist^
-  ^<color:#9a9a9a>This is a disabled droplist^
-  ^<b><color:red>This is a red droplist^
-}}
-@endsalt
-```
+![13-24](Captures/13-24.png)
 
-### Pseudo sprite [<<, >>]
-Using `<<` and `>>` you can define a pseudo-sprite or sprite-like drawing and reusing it latter.
+### 임시 스프라이트 아이콘 [<<, >>]
+`<<` 과 `>>`를 이용한 임시 스프라이트 아이콘을 만들어 사용할 수 있습니다.
 
 ```java
 @startsalt
@@ -919,33 +550,12 @@ Using `<<` and `>>` you can define a pseudo-sprite or sprite-like drawing and re
 }
 @endsalt
 ```
-```plantuml
-@startsalt
- {
- [X] checkbox|[] checkbox
- () radio | (X) radio
- This is a text|[This is my button]|This is another text
- "A field"|"Another long Field"|[A button]
- <<folder
- ............
- .XXXXX......
- .X...X......
- .XXXXXXXXXX.
- .X........X.
- .X........X.
- .X........X.
- .X........X.
- .XXXXXXXXXX.
- ............
- >>|<color:blue>other folder|<<folder>>
-^Droplist^
-}
-@endsalt
-```
+![13-25](Captures/13-25.png)
 
 ### OpenIconic
-[OpenIconic](https://useiconic.com/open/) is a very nice open source icon set. Those icons have been integrated into the [creole parser](https://plantuml.com/en/creole), so you can use them out-of-the-box. You can use the following syntax: `<&ICON_NAME>`.
+[OpenIconic](https://useiconic.com/open/)는 매우 유명한 프리 아이콘 세트입니다. 이것은 [creole 파서](https://plantuml.com/en/creole)에 통합되었기 때문에 바로 사용할 수 있습니다.
 
+다음과 같이 `<&ICON_NAME>` 문법을 이용합니다:
 ```java
 @startsalt
 {
@@ -955,30 +565,18 @@ Using `<<` and `>>` you can define a pseudo-sprite or sprite-like drawing and re
 }
 @endsalt
 ```
-```plantuml
-@startsalt
-{
-  Login<&person> | "MyName   "
-  Password<&key> | "****     "
-  [Cancel <&circle-x>] | [OK <&account-login>]
-}
-@endsalt
-```
+![13-26](Captures/13-26.png)
 
-The complete list is available on OpenIconic Website, or you can use the following special diagram:
+해당 오픈 아이콘의 목록은 다음과 같이 확인 가능합니다.
 
 ```java
 @startuml
 listopeniconic
 @enduml
 ```
-```plantuml
-@startuml
-listopeniconic
-@enduml
-```
+![listopeniconic](listopeniconic.png)
 
-### Add title, header, footer, caption or legend
+### 제목, 헤더, 푸터, 자막 범례 등
 ```java
 @startsalt
 title My title
@@ -997,28 +595,11 @@ end legend
 
 @endsalt
 ```
-```plantuml
-@startsalt
-title My title
-header some header
-footer some footer
-caption This is caption
-legend
-The legend
-end legend
+![13-27](Captures/13-27.png)
 
-{+
-  Login    | "MyName   "
-  Password | "****     "
-  [Cancel] | [  OK   ]
-}
+### 줌, DPI
 
-@endsalt
-```
-
-### Zoom, DPI
-
-#### Whitout zoom (by default)
+#### 줌 사용안함 (기본)
 ```java
 @startsalt
 {
@@ -1028,20 +609,12 @@ end legend
 }
 @endsalt
 ```
-```plantuml
-@startsalt
-{
-  <&person> Login  | "MyName   "
-  <&key> Password  | "****     "
-  [<&circle-x> Cancel ] | [ <&account-login> OK   ]
-}
-@endsalt
-```
+![13-28](Captures/13-28.png)
 
-### Scale
-You can use the `scale` command to zoom the generated image.
+### 스케일
+`scale` 명령을 이용하면 결과 이미지의 크기를 조종할 수 있습니다.
 
-You can use either a number or a fraction to define the scale factor. You can also specify either width or height (in pixel). And you can also give both width and height: the image is scaled to fit inside the specified dimension.
+스케일 다음에 몇배 라는 값을 넣어 크기 조종이 가능하기도 하고 가로 또는 세로를 픽셀 단위로 입력할 수도 있습니다. 가로 세로 모두 픽셀로 지정하는 것도 가능합니다.
 
 ```java
 @startsalt
@@ -1053,19 +626,10 @@ scale 2
 }
 @endsalt
 ```
-```plantuml
-@startsalt
-scale 2
-{
-  <&person> Login  | "MyName   "
-  <&key> Password  | "****     "
-  [<&circle-x> Cancel ] | [ <&account-login> OK   ]
-}
-@endsalt
-```
+![13-29](Captures/13-29.png)
 
 #### DPI
-You can also use the `skinparam dpi` command to zoom the generated image.
+`skinparam dpi` 명령어를 이용하면 [DPI](https://namu.wiki/w/DPI)로 이미지 크기를 조정할 수 있습니다.
 
 ```java
 @startsalt
@@ -1077,20 +641,11 @@ skinparam dpi 200
 }
 @endsalt
 ```
-```plantuml
-@startsalt
-skinparam dpi 200
-{
-  <&person> Login  | "MyName   "
-  <&key> Password  | "****     "
-  [<&circle-x> Cancel ] | [ <&account-login> OK   ]
-}
-@endsalt
-```
+![13-30](Captures/13-30.png)
 
-### Include Salt "on activity diagram"
+### "활동 다이어그램"에 와이어프레임 포함하기
 
-You can read the [following explanation](http://forum.plantuml.net/2427/salt-with-minimum-flowchat-capabilities?show=2427#q2427).
+[다음 설명 참조](http://forum.plantuml.net/2427/salt-with-minimum-flowchat-capabilities?show=2427#q2427).
 
 ```java
 @startuml
@@ -1141,57 +696,9 @@ failed, sorry
 "
 @enduml
 ```
-```plantuml
-@startuml
-(*) --> "
-{{
-salt
-{+
-<b>an example
-choose one option
-()one
-()two
-[ok]
-}
-}}
-" as choose
+![13-31](Captures/13-31.png)
 
-choose -right-> "
-{{
-salt
-{+
-<b>please wait
-operation in progress
-<&clock>
-[cancel]
-}
-}}
-" as wait
-wait -right-> "
-{{
-salt
-{+
-<b>success
-congratulations!
-[ok]
-}
-}}
-" as success
-
-wait -down-> "
-{{
-salt
-{+
-<b>error
-failed, sorry
-[ok]
-}
-}}
-"
-@enduml
-```
-
-It can also be combined with [define macro](https://plantuml.com/en/preprocessing#macro_definition).
+또한 [매크로 정의](https://plantuml.com/en/preprocessing#macro_definition)를 이용하여 동일 기능을 제공할 수 있습니다.
 
 ```java
 @startuml
@@ -1243,59 +750,10 @@ wait -right-> SALT(success)
 wait -down-> SALT(error)
 @enduml
 ```
-```plantuml
-@startuml
-!unquoted procedure SALT($x)
-"{{
-salt
-%invoke_procedure("_"+$x)
-}}" as $x
-!endprocedure
+![13-31](Captures/13-31.png)
 
-!procedure _choose()
-{+
-<b>an example
-choose one option
-()one
-()two
-[ok]
-}
-!endprocedure
-
-!procedure _wait()
-{+
-<b>please wait
-operation in progress
-<&clock>
-[cancel]
-}
-!endprocedure
-
-!procedure _success()
-{+
-<b>success
-congratulations!
-[ok]
-}
-!endprocedure
-
-!procedure _error()
-{+
-<b>error
-failed, sorry
-[ok]
-}
-!endprocedure
-
-(*) --> SALT(choose)
--right-> SALT(wait)
-wait -right-> SALT(success)
-wait -down-> SALT(error)
-@enduml
-```
-
-### Include salt "on while condition of activity diagram"
-You can include `salt` on while condition of activity diagram.
+### 활동 다이어그램의 `while` 조건에서 와이어프레임 사용
+다음과 같이 활동 다이어그램의 `while` 조건에서 와이어프레임 사용할 수 있습니다.
 
 ```java
 @startuml
@@ -1313,25 +771,10 @@ endwhile (correct)
 :disable service;
 @enduml
 ```
-```plantuml
-@startuml
-start
-while (\n{{\nsalt\n{+\nPassword | "****     "\n[Cancel] | [  OK   ]}\n}}\n) is (Incorrect)
-  :log attempt;
-  :attempt_count++;
-  if (attempt_count > 4) then (yes)
-    :increase delay timer;
-    :wait for timer to expire;
-  else (no)
-  endif
-endwhile (correct)
-:log request;
-:disable service;
-@enduml
-```
+![13-32](Captures/13-32.png)
 
-### Include salt "on repeat while condition of activity diagram"
-You can include `salt` on 'repeat while' condition of activity diagram.
+### 활동 다이어그램의 `repeat while` 조건 에서 와이어프레임 사용
+다음과 같이 활동 다이어그램의 `repeat while` 조건에서 와이어프레임 사용할 수 있습니다.
 
 ```java
 @startuml
@@ -1351,11 +794,12 @@ repeat while (\n{{\nsalt\n{^"Next step"\n  Do you want to continue? \n[Yes]|[No]
 stop
 @enduml
 ```
+![13-33](Captures/13-33.png)
 
 ### Skinparam
-You can use **[only]** some [skinparam](https://plantuml.com/en/skinparam) command to change the skin of the drawing.
+[skinparam](https://plantuml.com/en/skinparam) 명령어의 **일부**를 사용할 수 있습니다.
 
-Some example:
+예제:
 
 ```java
 @startsalt
@@ -1367,16 +811,7 @@ skinparam Backgroundcolor palegreen
 }
 @endsalt
 ```
-```plantuml
-@startsalt
-skinparam Backgroundcolor palegreen
-{+
-  Login    | "MyName   "
-  Password | "****     "
-  [Cancel] | [  OK   ]
-}
-@endsalt
-```
+![13-34](Captures/13-34.png)
 
 ```java
 @startsalt
@@ -1388,16 +823,7 @@ skinparam handwritten true
 }
 @endsalt
 ```
-```plantuml
-@startsalt
-skinparam handwritten true
-{+
-  Login    | "MyName   "
-  Password | "****     "
-  [Cancel] | [  OK   ]
-}
-@endsalt
-```
+![13-35](Captures/13-35.png)
 
 ```java
 @startsalt
@@ -1409,21 +835,12 @@ skinparam defaultFontName monospaced
 }
 @endsalt
 ```
-```plantuml
-@startsalt
-skinparam defaultFontName monospaced
-{+
-  Login    | "MyName   "
-  Password | "****     "
-  [Cancel] | [  OK   ]
-}
-@endsalt
-```
+![13-36](Captures/13-36.png)
 
-### Style
-You can use **[only]** some [style](https://plantuml.com/en/style-evolution) command to change the skin of the drawing.
+### 스타일
+[스타일](https://plantuml.com/en/style-evolution) 명령 중 **일부**를 이용할 수 있습니다.
 
-Some example:
+예제:
 
 ```java
 @startsalt
@@ -1439,20 +856,7 @@ saltDiagram {
 }
 @endsalt
 ```
-```plantuml
-@startsalt
-<style>
-saltDiagram {
-  BackgroundColor palegreen
-}
-</style>
-{+
-  Login    | "MyName   "
-  Password | "****     "
-  [Cancel] | [  OK   ]
-}
-@endsalt
-```
+![13-37](Captures/13-37.png)
 
 ```java
 @startsalt
@@ -1472,21 +876,4 @@ saltDiagram {
 }
 @endsalt
 ```
-```plantuml
-@startsalt
-<style>
-saltDiagram {
-  Fontname Monospaced
-  FontSize 10
-  FontStyle italic
-  LineThickness 0.5
-  LineColor red
-}
-</style>
-{+
-  Login    | "MyName   "
-  Password | "****     "
-  [Cancel] | [  OK   ]
-}
-@endsalt
-```
+![13-38](Captures/13-38.png)
