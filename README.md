@@ -140,7 +140,7 @@ brew install prince
 ### YAML 데이터 그리기
 [YAML 데이터 그리기 설명](PlantUML-11-YAML%20Data.md)
 
-## 간트 차트 다이어그램
+### 간트 차트 다이어그램
 [간트 차트 다이어그램 설명](PlantUML-17-Gantt%20Diagram.md)
 
 ## 부록
