@@ -1,4 +1,4 @@
-## YAML 데이터
+## YAML 데이터 그리기
 
 [YAML](https://en.wikipedia.org/wiki/YAML) 데이터 포맷은 설정 등 소프트웨어에서 잘 사용됩니다. JSON하고 1:1 호환이 가능합니다.
 

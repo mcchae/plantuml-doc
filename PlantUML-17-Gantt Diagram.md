@@ -1,4 +1,4 @@
-## 간트(Gantt) 다이어그램
+## 간트 차트 다이어그램
 [간트 차트](https://en.wikipedia.org/wiki/Gantt_chart)는 주어진 시간에 해당 자원의 시간 순 관계를 도식화 해 주는 것으로 대표적으로 [마이크로소프트의 프로젝트](https://en.wikipedia.org/wiki/Microsoft_Project)가 있습니다. PlantUML에서는 명령으로 이 간트 차트를 다이어그램으로 표시해 줄 수 있습니다.
 
 ### 할일 정의

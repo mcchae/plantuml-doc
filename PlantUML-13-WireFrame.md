@@ -1,4 +1,4 @@
-## 와이어프레임 (Salt)
+## 와이어프레임 다이어그램
 
 **Salt**는 PlantUML에서 소프트웨어 와이어프레임 [Website Wireframe or Page Schematic or Screen Blueprint](https://en.wikipedia.org/wiki/Website_wireframe)을 만들 수 있는 하위 프로젝트 입니다.
 
