@@ -118,16 +118,16 @@ brew install prince
 ### 상태 다이어그램
 [상태 다이어그램 설명](PlantUML-08-State%20Diagram.md)
 
-## 아키메이트 다이어그램
+### 아키메이트 다이어그램
 [아키메이트 다이어그램 설명](PlantUML-14-Archimate%20Diagram.md)
 
-## 마인드맵 다이어그램
-[마인드맵 다이어그램 설명](PlantUML-18-MindMap.md)
-
-## 작업 명세 구조 (WBS) 다이어그램
+### 작업 명세 구조 (WBS) 다이어그램
 [작업 명세 구조 (WBS) 다이어그램 설명](PlantUML-19-Work%20Breakdown%20Structure.md)
 
 ## 부가 다이어그램
+### 마인드맵 다이어그램
+[마인드맵 다이어그램 설명](PlantUML-18-MindMap.md)
+
 ### 와이어프레임 다이어그램
 [와이어프레임 다이어그램 설명](PlantUML-13-WireFrame.md)
 
